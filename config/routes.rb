@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   get 'script/index' => 'script#index'
   get 'landing/index' => 'landing#index'
   root 'users#index'
+  # resources :people
+  # resources :Patients
+  resources :users
 end

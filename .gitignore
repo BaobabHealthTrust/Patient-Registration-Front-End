@@ -17,8 +17,8 @@
 /tmp
 
 erd.pdf
-Gemfile
-Gemfile.lock
+#Gemfile
+#Gemfile.lock
 config/database.yml
 public/touchscreentoolkit/.*
 

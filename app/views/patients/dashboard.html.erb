@@ -1,0 +1,90 @@
+<style type="text/css">
+  body {
+    -moz-user-select:none;
+    font-family: Arial,sans-serif;
+  }
+
+  #stats {
+    width:98%;
+    margin:10px;
+    background:white;
+    -moz-user-select:none;
+  }
+
+  #stats a {
+    border-radius: 7px;
+    background-color: #669999;
+    border-bottom: 1px outset black;
+    border-style: outset;
+    border-top: 1px outset black;
+    color: white;
+    display: block;
+    padding: 10px 16px 10px 10px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  #stats td {
+    width: 310px;
+  }
+
+  #table_div {
+    overflow:auto;
+    height: 280px;
+    background-color: white;
+    border: 1px #eee solid;
+    border-width: 1px;
+  }
+</style>
+
+<script type="text/javascript">
+  function setInnerHtmlData(id,result,path) {
+    td = document.getElementById(id);
+    if(result == 'Filing Number (Create)'){
+      var link = document.createElement('a');
+      link.setAttribute('onmousedown',"filingNumberPrint();");
+      link.innerHTML = result;
+      td.appendChild(link);
+    }else{
+      td.innerHTML = "<a href =" + path + ">" +  result + "</a>";
+    }
+  }
+
+  function filingNumberPrint() {
+    window.parent.showAlertPopup();
+  }
+</script>
+
+<base target="_parent">
+<div id="table_div">
+
+  <table id="stats">
+    <% count = @links.length  unless @links.blank? %>
+    <% (@links || []).each do |name,path|
+      count_up = 0
+      count = 0 if @links.blank?
+    %>
+      <% while count_up < count %>
+        <tr>
+          <td id = "<%=count_up+= 1%>"></td>
+          <td id = "<%=count_up+= 1%>"></td>
+          <td id = "<%=count_up+= 1%>"></td>
+        </tr>
+      <%end unless @links.blank?%>
+    <%end%>
+  </table>
+
+
+  <%
+  count = @links.length  unless @links.blank?
+  @links.map do | name , path | %>
+    <script type="text/javascript">
+      setInnerHtmlData("<%=count%>","<%=name%>","<%=path%>");
+    </script>
+    <%count-=1%>
+  <%end%>
+
+</div>
+
+
+</base>
