@@ -138,6 +138,30 @@
         .main-content {
             margin: 20px;
         }
+
+        .app-link {
+            display: inline-flex;
+            min-width: 35%;
+            padding: 10px;
+            margin: 5%;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            background-color: blueviolet;
+            color: whitesmoke;
+        }
+
+        #app-2-link {
+            background-color: green;
+        }
+
+        #app-3-link {
+            background-color: red;
+        }
+
+        #app-4-link {
+            background-color: orange;
+        }
     }
 
     #nav {
