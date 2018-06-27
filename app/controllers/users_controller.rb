@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
 
-=======
   def edit
     @user = SAMPLE_USERS[params[:id].to_i]
     # TODO: Route edit request to API
