@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'script/index' => 'script#index'
   get 'landing/index' => 'landing#index'
-
+  get '/login' => 'users#login'
   resources :people
   resources :patients
   resources :users
