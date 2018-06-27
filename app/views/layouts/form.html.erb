@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+    <script language="javascript" defer="true">
+      tstUsername = "<%= "" %>";
+      tstUserKeyboardPref = "<%= "qwerty" %>";
+
+      tstCurrentDate = "<%= (session[:datetime] ? session[:datetime].to_date.strftime("%Y-%m-%d") :
+    Date.today.strftime("%Y-%m-%d")) %>";
+
+
+    </script>
+
+    <script type="text/javascript" src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer="true"></script>
+    <script type="text/javascript" src="/assets/jquery-1.3.2.min.js"></script>
+
+  </head>
+  <body id="mateme">
+    <div id="container">
+      <div id="content">
+        <% unless flash[:notice].nil? %>
+          <p id="flash_notice" style="color: green"><%= flash[:notice] %></p>
+        <% end %>
+        <% unless flash[:error].nil? %>
+          <p id="flash_error" style="color: red"><%= flash[:error] %></p>
+        <% end %>
+        <%= yield %>
+        <div id="footer">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+
+  var patientID = '<%= params[:patient_id] %>'
+  jQuery(document).ready(function(){
+
+    var checkExist = setInterval(function() {
+      if (jQuery('#cancelButton').length) {
+        jQuery('#cancelButton').click(function () {
+          yesButton = jQuery("#messageBar button")[0];
+          yesButton.onmousedown = function(){
+            hideMessage();
+            window.top.location.href = "/patients/show/" + patientID;
+          }
+        });
+        clearInterval(checkExist);
+      }
+    }, 100); // check every 100ms
+  });
+
+</script>

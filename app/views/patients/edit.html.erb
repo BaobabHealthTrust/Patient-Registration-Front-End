@@ -1,3 +1,4 @@
+<h1 class="content-header">Edit Patient</h1>
 <%= form_tag( 'path' , remote: true) do |f| %>
     <%= label_tag(:person, 'Person:') %>
     <%= number_field_tag(:person, value: @patients[:person][:id]) %>
@@ -6,3 +7,4 @@
  
     <%= submit_tag %>
 <% end %>
+

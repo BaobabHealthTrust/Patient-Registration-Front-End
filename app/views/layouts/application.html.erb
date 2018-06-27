@@ -7,11 +7,48 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-      <!-- <script type="text/javascript" language="javascript" src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer ></script> -->
+    <script type="text/javascript" language="javascript" src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer ></script>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="header">
+      <div id="information">
+        <p>User: foobar</p>
+        <p>Date: sdasdas</p>
+      </div>
+
+      <div id="logo">
+        <p>Logo</p>
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="programs">
+        <h5 class="content-header">Quick Links</h5>
+        <ul>
+          <li><a href="#" class='btn'>This App</a></li>
+          <li><a href="#" class='btn'>Some Other App</a></li>
+        </ul>
+      </div>
+
+      <div id="main">
+        <%= yield %>
+      </div>
+
+      <div id="nav">
+        <h5 class="content-header">Menu</h5>
+        <ul>
+          <li><%= link_to('Home', root_path) %></li>
+          <li><%= link_to('Patients', patients_path) %></li>
+          <li><%= link_to('Users', users_path) %></li> <!-- Restrict to admins through UAC checks -->
+          <li><a href="#">Reports</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="footer">
+      <a href="#" id="btn-logout" class="btn">Logout</a>
+      <a href="#" id="btn-search-patient" class="btn">Find or register patient</a>
+    </div>
   </body>
 </html>
