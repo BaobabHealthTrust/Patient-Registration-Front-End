@@ -1,25 +1,67 @@
+<div id="header">
+  <div id="information">
+    <p>User: foobar</p>
+    <p>Date: sdasdas</p>
+  </div>
 
-<table class="listing" summary="Subject list">
-  <tr class="header">
-    <th></th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Gender</th>
-    <th>D.O.B</th>
-  </tr>
+  <div id="logo">
+    <p>Logo</p>
+  </div>
+</div>
 
-  <% @patient.each do |x| %>
-  <tr>
-  <td><%= x[:person][:person_name][:firstname] %></td>
-  <td><%= x[:person][:person_name][:lastname] %></td>
-    <td><%= x[:updated_at] %></td>
+<div id="content">
+  <div id="programs">
+    <h5 class="content-section-header">Programs</h5>
+    <ul>
+      <li><a href="#" id="programlinks" class='btn'> example </a></li>
+      <li><a href="#" id="programlinks" class='btn'> example 2 </a></li>
+    </ul>
+  </div>
+
+  <div id="main">
+    <h5 class="content-section-header">Programs</h5>
+    <table class="listing main-content" summary="Subject list">
+      <thead>
+        <tr class="header">
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>D.O.B</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @patient.each do |x| %>
+        <tr>
+        <td><%= x[:person][:person_name][:firstname] %></td>
+        <td><%= x[:person][:person_name][:lastname] %></td>
+          <td><%= x[:updated_at] %></td>
 
 
-    <td class="actions">
-      <%= link_to("Show", patient_path(x[:person_id]), :class => 'action show') %>
-     <%= link_to('Edit', edit_patient_path(x[:person_id])) %>
-      <%= link_to("Delete", '#', :class => 'action delete') %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+          <td class="actions">
+            <%= link_to("Show", patient_path(x[:person_id]), :class => 'action show') %>
+          <%= link_to('Edit', edit_patient_path(x[:person_id])) %>
+            <%= link_to("Delete", '#', :class => 'action delete') %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="nav">
+    <h5 class="content-section-header">Programs</h5>
+    <ul>
+      <li>Overview</li>
+      <li><%= link_to('Patients', patients_path, :class => 'action index') %></li>
+      <li><%= link_to('Users', users_path, :class => 'action index') %></li> <!-- Restrict to admins through UAC checks -->
+      <li><a href="#">Reports</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="footer">
+  <a href="#" id="btn-logout" class="btn">Logout</a>
+  <a href="#" id="btn-search-patient" class="btn">Find or register patient</a>
+</div>
+
