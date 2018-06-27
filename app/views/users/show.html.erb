@@ -1,0 +1,65 @@
+<h1><%= @user[:person][:person_name][:firstname] %> <%= @user[:person][:person_name][:lastname] %></h1>
+
+<table class="inline-table pull-left">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </th>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>id:</id>
+      <td><%= @user[:id] %></td>
+    </tr>
+    <tr>
+      <td>uuid:</td>
+      <td><%= @user[:uuid] %></td>
+    </tr>
+    <tr>
+      <td>username:</td>
+      <td><%= @user[:username] %></td>
+    </tr>
+    <tr>
+      <td>Role</td>
+      <td><a href="#"><%= @user[:role][:rolename] %></a></td>
+    </tr>
+    <tr>
+      <td>Active</td>
+      <td><%= @user[:active] %></td>
+    </tr>
+    <tr>
+      <td>Created</td>
+      <td><%= @user[:created_at] %></td>
+    </tr>
+    <tr>
+      <td>Modified</td>
+      <td><%= @user[:modified_at] %></td>
+    </td>
+  </tbody>
+</table>
+
+<table class="inline-table pull-right">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>First name</td>
+      <td><%= @user[:person][:person_name][:firstname] %></td>
+    </tr>
+    <tr>
+      <td>Last name</td>
+      <td><%= @user[:person][:person_name][:lastname] %></td>
+    <tr>
+    <tr>
+      <td>Date of birth</td>
+      <td><%= @user[:person][:birthdate] %></td>
+    </tr>
+  </tbody>
+</table>

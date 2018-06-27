@@ -1,0 +1,26 @@
+<h1>Users</h1>
+<table>
+  <thead>
+    <th>id</id>
+    <th>Username</th>
+    <th>Role</th>
+    <th>Action</th>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user[:uuid] %></td>
+        <td><%= user[:person][:person_name][:firstname] %></td>
+        <td><%= user[:person][:person_name][:lastname] %></td>
+        <td><a href="#"><%= user[:role][:rolename] %></a></td>
+        <td>
+          <a href="#"><%= link_to('View', user_path(user[:id])) %></a>
+          <a href="#"><%= link_to('Edit', edit_user_path(user[:id])) %></a>
+          <a href="#"><%= link_to('Delete', user_path(user[:id]), method: :delete, confirm: 'Are you sure?') %></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+ 
