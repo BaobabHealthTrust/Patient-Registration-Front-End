@@ -22,6 +22,10 @@ class UsersController < ApplicationController
     # TODO: Send delete request to API
   end
 
+  def login
+    render layout: "form"
+  end
+
   private
 
   SAMPLE_USERS = [
