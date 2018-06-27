@@ -1,0 +1,24 @@
+
+<table class="listing" summary="Subject list">
+<tr class="header">
+  <th></th>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Gender</th>
+  <th>D.O.B</th>
+</tr>
+
+<% @pe.each do |x| %>
+<tr>
+  <td><%= x %></td>
+
+
+
+  <td class="actions">
+   
+    <%= link_to("Edit", '#', :class => 'action edit') %>
+    <%= link_to("Delete", '#', :class => 'action delete') %>
+  </td>
+</tr>
+<% end %>
+</table>

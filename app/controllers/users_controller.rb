@@ -5,5 +5,6 @@ class UsersController < ApplicationController
   end
 
   def index
+    @pe = 'wa'
   end
 end
