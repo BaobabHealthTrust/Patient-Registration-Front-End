@@ -31,6 +31,6 @@ class MainController < ApplicationController
       return
     end
 
-    render json: @response
-  end
+    render template: 'main/index', layout: 'application'
+    end
 end

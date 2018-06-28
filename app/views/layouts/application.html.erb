@@ -15,6 +15,12 @@
         <p>User: foobar</p>
         <p>Date: sdasdas</p>
       </div>
+      <% unless flash[:notice].nil? %>
+          <p id="flash_notice" style="color: green"><%= flash[:notice] %></p>
+        <% end %>
+        <% unless flash[:error].nil? %>
+          <p id="flash_error" style="color: red"><%= flash[:error] %></p>
+        <% end %>
 
       <div id="logo">
         <p>Logo</p>

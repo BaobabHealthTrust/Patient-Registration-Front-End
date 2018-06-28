@@ -10,7 +10,8 @@
     </thead>
 
     <tbody>
-      <% @patient.each do |x| %>
+      <%= @patients %>
+      <% @patients.each do |x| %>
       <tr>
         <td><%= x[:person][:person_name][:firstname] %></td>
         <td><%= x[:person][:person_name][:lastname] %></td>
