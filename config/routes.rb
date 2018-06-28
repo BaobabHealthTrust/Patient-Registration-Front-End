@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   root "main#index"
 
-  get "/login" => "users#login"
+  get "/login" => "main#check_login"
+  post "/login" => "main#login"
 
   resources :people
   resources :patients
