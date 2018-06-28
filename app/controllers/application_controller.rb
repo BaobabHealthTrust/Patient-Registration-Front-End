@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   private
     def handle_api_response(response, status)
       if status == 403
-        redirect controller: :users, action: :login
+        redirect_to controller: :users, action: :login
         nil
       elsif status >= 300
         if response.nil?
