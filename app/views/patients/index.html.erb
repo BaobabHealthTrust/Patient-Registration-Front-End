@@ -10,15 +10,16 @@
     </thead>
 
     <tbody>
-      <% @patient.each do |x| %>
+      <% @patients.class 
+      @patients.each do |x| %>
       <tr>
-        <td><%= x[:person][:person_name][:firstname] %></td>
-        <td><%= x[:person][:person_name][:lastname] %></td>
-        <td><%= x[:person][:gender] %></td>
+        <td><%= x['person']['person_name']['firstname'] %></td>
+        <td><%= x['person']['person_name']['lastname'] %></td>
+        <td><%= x['person']['gender'] %></td>
         <td class="actions">
-          <%= link_to("Show", patient_path(x[:person_id]), :class => 'action show') %>
+          <%= link_to("Show", patient_path(x['person_id']), :class => 'action show') %>
           |
-          <%= link_to('Edit', edit_patient_path(x[:person_id])) %>
+          <%= link_to('Edit', edit_patient_path(x['person_id'])) %>
           |
           <%= link_to("Delete", '#', :class => 'action delete') %>
         </td>

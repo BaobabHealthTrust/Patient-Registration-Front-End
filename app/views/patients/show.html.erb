@@ -1,5 +1,5 @@
 <h1 class="content-header">Person</h1>
-<h2><%= @patients[:person][:person_name][:firstname] %> <%= @patients[:person][:person_name][:lastname] %></h2>
+<h2><%= @patients['person']['person_name']['firstname'] %> <%= @patients['person']['person_name']['lastname'] %></h2>
 
 <table class="inline-table pull-left">
   <thead>
@@ -12,28 +12,18 @@
   <tbody>
     <tr>
       <td>id:</id>
-      <td><%= @patients[:id] %></td>
+      <td><%= @patients['id'] %></td>
     </tr>
-    <tr>
-      <td>uuid:</td>
-      <td><%= @patients[:uuid] %></td>
-    </tr>
-    <tr>
-      <td>username:</td>
-      <td><%= @patients[:username] %></td>
-    </tr>
+
   
-    <tr>
-      <td>Active</td>
-      <td><%= @patients[:active] %></td>
-    </tr>
+
     <tr>
       <td>Created</td>
-      <td><%= @patients[:created_at] %></td>
+      <td><%= @patients['created_at'] %></td>
     </tr>
     <tr>
       <td>Modified</td>
-      <td><%= @patients[:modified_at] %></td>
+      <td><%= @patients['modified_at'] %></td>
     </td>
   </tbody>
 </table>
@@ -49,15 +39,15 @@
   <tbody>
     <tr>
       <td>First name</td>
-      <td><%= @patients[:person][:person_name][:firstname] %></td>
+      <td><%= @patients['person']['person_name']['firstname'] %></td>
     </tr>
     <tr>
       <td>Last name</td>
-      <td><%= @patients[:person][:person_name][:lastname] %></td>
+      <td><%= @patients['person']['person_name']['lastname'] %></td>
     <tr>
     <tr>
       <td>Date of birth</td>
-      <td><%= @patients[:person][:birthdate] %></td>
+      <td><%= @patients['person']['birthdate'] %></td>
     </tr>
   </tbody>
 </table>

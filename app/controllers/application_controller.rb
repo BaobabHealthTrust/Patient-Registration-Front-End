@@ -2,10 +2,18 @@ require 'prs_api/api_client'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
+  skip_before_action :verify_authenticity_token
 
   protected
     def api_get(resource)
-      response, status = ApiClient.new(cookies['x-api-key']).get(resource)
+
+      # cookies['x-api-key'] = {
+      #   value: '',
+      #   expires: 1.year,
+      #   path: '/',
+      #   domain: 'localhost:8000'
+      # }
+      response, status = ApiClient.new(cookies['x-api-key', path: '/' ,domain: 'localhost8000', ]).get(resource)
       handle_api_response response, status
     end
 

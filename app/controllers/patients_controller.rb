@@ -5,10 +5,11 @@ class PatientsController < ApplicationController
 
     def index
         # TODO: Retrieve list of users from API
-        response, status = ApiClient.new(cookies['x-api-key']).get('/patients')
+        response, status = ApiClient.new(cookies['x-api-key']  ).get('/patients')
             
           if status == 200
            @patients = response
+           @patients.to_json
           
           else
             @patients = []
@@ -18,14 +19,36 @@ class PatientsController < ApplicationController
       end
     
       def show
-        @patients = SAMPLE_USERS[params[:id].to_i]
+
+        response, status = ApiClient.new(cookies['x-api-key']  ).get('/patients/'+params[:id].to_s)
+            
+        if status == 200
+         @patients = response
+         @patients.to_json
+        
+        else
+          @patients = []
+          flash[:error] = response['errors'].join '\n'
+          # render template: 'main/login',  layout: 'form', status: status
+        end
+
+        
         # TODO: Route edit request to API
       end
     
     
       def edit
-        @patients = SAMPLE_USERS[params[:id].to_i]
-        # TODO: Route edit request to API
+        response, status = ApiClient.new(cookies['x-api-key']  ).get('/patients/'+params[:id].to_s)
+            
+        if status == 200
+         @patients = response
+         @patients.to_json
+        
+        else
+          @patients = []
+          flash[:error] = response['errors'].join '\n'
+          # render template: 'main/login',  layout: 'form', status: status
+        end
       end
     
       def update
