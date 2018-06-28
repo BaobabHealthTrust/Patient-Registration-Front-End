@@ -18,18 +18,19 @@ class ApplicationController < ActionController::Base
     def handle_api_response(response, status)
       if status == 403
         redirect controller: :users, action: :login
-        return nil
+        nil
       elsif status >= 300
         if response.nil?
           logger.error('Failed to communicate with API')
           flash[:error] = 'Something awful occurred'
         else
           flash[:error] = response['errors'].join '\n'
-        return nil
+        end
+        nil
       else
         # Have a 2XX status meaning success however make sure
         # that response returned is never nil (this flags an error here)
-        return response or {}
+        response or {}
       end
     end
 end
