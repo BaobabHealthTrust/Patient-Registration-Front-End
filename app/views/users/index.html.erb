@@ -11,16 +11,16 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user[:id] %></td>
-          <td><%= user[:uuid] %></td>
-          <td><%= user[:username] %></td>
-          <td><a href="#"><%= user[:role][:rolename] %></a></td>
+          <td><%= user['id'] %></td>
+          <td><%= user['uuid'] %></td>
+          <td><%= user['username'] %></td>
+          <td><a href="#"><%= user['role']['rolename'] %></a></td>
           <td>
-            <a href="#"><%= link_to('View', user_path(user[:id])) %></a>
+            <a href="#"><%= link_to('View', user_path(user['id'])) %></a>
             |
-            <a href="#"><%= link_to('Edit', edit_user_path(user[:id])) %></a>
+            <a href="#"><%= link_to('Edit', edit_user_path(user['id'])) %></a>
             |
-            <a href="#"><%= link_to('Delete', user_path(user[:id]), method: :delete, confirm: 'Are you sure?') %></a>
+            <a href="#"><%= link_to('Delete', user_path(user['id']), method: :delete, confirm: 'Are you sure?') %></a>
           </td>
         </tr>
       <% end %>
