@@ -1,25 +1,46 @@
 require 'prs_api/api_client'
 
 class MainController < ApplicationController
+  layout :resolve_layout
+
   def login
     # render template: 'main/index', layout: 'application'
     # puts "username: #{params[:username]}"
-    response, status = ApiClient.new().post('/login', {
+
+    response = api_post('login', {
       username: params[:username], password: params[:password]
     })
 
-    if status == 200
+    unless response.nil?
       set_api_key response['api-key']
       set_user response['user']
       render template: 'main/index', layout: 'application'
-    else
-      flash[:error] = response['errors'].join '\n'
-      render template: 'main/login',  layout: 'form', status: status
     end
   end
 
   def check_login
-    response = api_get('login')
-    render template: 'main/index', layout: 'application' unless response.nil?
+    user = api_get('login')
+    unless user.nil?
+      set_user user
+      render template: 'main/index', layout: 'application' unless response.nil?
+    end
+  end
+
+  def logout
+    api_get('logout')
+    set_api_key nil
+    set_user nil
+    redirect_to :login
+  end
+
+  private
+
+  def resolve_layout
+    case action_name
+    when 'login'
+      'form'
+    else
+      'application'
+    end
   end
 end

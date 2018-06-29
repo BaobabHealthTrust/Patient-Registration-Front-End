@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get "/login" => "main#check_login"
   post "/login" => "main#login"
+  get "/logout" => "main#logout"
 
   resources :people
   resources :patients
