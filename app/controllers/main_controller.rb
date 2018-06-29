@@ -3,14 +3,14 @@ require 'prs_api/api_client'
 class MainController < ApplicationController
   def login
     # render template: 'main/index', layout: 'application'
-    puts "username: #{params[:username]}"
+    # puts "username: #{params[:username]}"
     response, status = ApiClient.new().post('/login', {
       username: params[:username], password: params[:password]
     })
 
     if status == 200
-      cookies['x-api-key'] = response['api-key']
-      @user = session['user'] = response['user']
+      set_api_key response['api-key']
+      set_user response['user']
       render template: 'main/index', layout: 'application'
     else
       flash[:error] = response['errors'].join '\n'
@@ -19,18 +19,7 @@ class MainController < ApplicationController
   end
 
   def check_login
-    api_key = cookies['x-api-key']
-    if api_key.nil?
-      render template: 'main/login', layout: 'form'
-      return
-    end
-
-    response = ApiClient.new(api_key).get('/login')
-    if response.nil?
-      render template: 'main/login', layout: 'form'
-      return
-    end
-
-    render template: 'main/index', layout: 'application'
-    end
+    response = api_get('login')
+    render template: 'main/index', layout: 'application' unless response.nil?
+  end
 end

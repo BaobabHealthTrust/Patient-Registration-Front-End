@@ -12,8 +12,8 @@
   <body>
     <div id="header">
       <div id="information">
-        <p>User: foobar</p>
-        <p>Date: sdasdas</p>
+        <p>User: <%= @logged_in_user['username'] %></p>
+        <p>Date: <%= Time.now %></p>
       </div>
       <% unless flash[:notice].nil? %>
           <p id="flash_notice" style="color: green"><%= flash[:notice] %></p>
