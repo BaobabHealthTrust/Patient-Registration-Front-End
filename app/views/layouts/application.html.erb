@@ -9,23 +9,33 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body id="content">
     <div id="header">
       <div id="information">
-        <p>User: <%= @logged_in_user['username'] %></p>
-        <p>Date: <%= Time.now %></p>
+        <table>
+          <tbody>
+            <tr>
+              <td>User:</td>
+              <td><%= @logged_in_user['username'] %></td>
+            </tr>
+            <tr>
+              <td>Date:</td>
+              <td><%= Time.now.to_date %></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div id="logo">
         <p>Logo</p>
       </div>
     </div>
 
-    <div id="content">
+    <div id="trunk">
       <div id="programs">
-        <h5 class="content-header">Quick Links</h5>
+        <h5 class="trunk-header">Quick Links</h5>
         <ul>
-          <li><a href="#" class='btn'>This App</a></li>
-          <li><a href="#" class='btn'>Some Other App</a></li>
+          <li><a href="#">This App</a></li>
+          <li><a href="#">Some Other App</a></li>
         </ul>
       </div>
 
@@ -34,7 +44,7 @@
       </div>
 
       <div id="nav">
-        <h5 class="content-header">Menu</h5>
+        <h5 class="trunk-header">Menu</h5>
         <ul>
           <li><%= link_to('Home', root_path) %></li>
           <li><%= link_to('Patients', patients_path) %></li>
@@ -46,7 +56,7 @@
 
     <div id="footer">
       <%= link_to('Logout', logout_path, id: 'btn-logout', class: 'btn') %>
-      <a href="#" id="btn-search-patient" class="btn">Find or register patient</a>
+      <%= link_to('Find or Register Patient', patients_search_path, id: 'btn-search-patient', class: 'btn') %>
     </div>
   </body>
 </html>
