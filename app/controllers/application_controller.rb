@@ -33,15 +33,15 @@ class ApplicationController < ActionController::Base
   private
     def handle_api_response(response, status)
       if status == 403
-        flash[:error] = 'Login required'
+        flash.now[:error] = 'Login required'
         render template: 'main/login', layout: 'form'
         return nil
       elsif status >= 300
         if response.nil? or status >= 500
           logger.error("Failed to communicate with API: #{response}")
-          flash[:error] = 'Something awful occurred, please contact system admin'
+          flash.now[:error] = 'Something awful occurred, please contact system admin'
         else
-          flash[:error] = response['errors'].join '\n'
+          flash.now[:error] = response['errors'].join '\n'
         end
         return nil
       else
