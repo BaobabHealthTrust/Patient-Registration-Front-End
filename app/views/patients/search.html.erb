@@ -1,0 +1,43 @@
+<% unless @patients.nil? or @patients.empty? %>
+  <h1 class="trunk-header">Patients</h1>
+  <table class="listing main-trunk" summary="Subject list">
+    <thead>
+      <tr class="header">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>D.O.B</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @patients.each do |person| %>
+      <tr>
+        <td><%= person['person']['person_name']['firstname'] %></td>
+        <td><%= person['person']['person_name']['lastname'] %></td>
+        <td><%= person['person']['gender'] %></td>
+        <td class="actions">
+          <%= link_to("Show", patient_path(person['person_id']), :class => 'action show') %>
+          |
+          <%= link_to('Edit', edit_patient_path(person['person_id'])) %>
+          |
+          <%= link_to("Delete", '#', :class => 'action delete') %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+    <h1 class="trunk-header">Patient search</h1>
+    <h1>Patient not found</h1>
+    <p>What would you like to do?</p>
+    <ol>
+        <li><%= link_to 'Create patient', patients_new_path(
+                    params: {
+                        firstname: @search_params[:firstname],
+                        lastname: @search_params[:lastname]
+                    }
+                )  %></li>
+        <li><a href="#" class="btn">Go back</a></li>
+    </ol>
+<% end %>

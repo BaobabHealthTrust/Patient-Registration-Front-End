@@ -1,200 +1,56 @@
-require 'json'
-require 'prs_api/api_client'
-
 class PatientsController < ApplicationController
+  def index
+    @patients = api_get 'patients' 
+  end
 
-    def index
-        # TODO: Retrieve list of users from API
-        response, status = ApiClient.new(cookies['x-api-key']  ).get('/patients')
-            
-          if status == 200
-           @patients = response
-           @patients.to_json
-          
-          else
-            @patients = []
-            flash[:error] = response['errors'].join '\n'
-            # render template: 'main/login',  layout: 'form', status: status
-          end
-      end
+  def search
+    if params['firstname'].nil? and params['lastname'].nil?
+      render template: 'patients/search-form', layout: 'form' and return
+    end
     
-      def show
+    @search_params = {firstname: params['firstname'], lastname: params['lastname']}
+    @patients = api_post "patients/search", {
+      firstname: params['firstname'],
+      lastname: params['lastname']
+    }
+  end
 
-        response, status = ApiClient.new(cookies['x-api-key']  ).get('/patients/'+params[:id].to_s)
-            
-        if status == 200
-         @patients = response
-         @patients.to_json
-        
-        else
-          @patients = []
-          flash[:error] = response['errors'].join '\n'
-          # render template: 'main/login',  layout: 'form', status: status
-        end
+  def edit
+  end
 
-        
-        # TODO: Route edit request to API
-      end
+  def new
+    @firstname = params[:firstname] or ''
+    @lastname = params[:lastname] or ''
+
+    render 'layout': 'form'
+  end
+
+  def create
+    person = api_post '/people', params
+
+    if person.nil?
+      flash[:error] = 'Failed to create patient (could not create related person)'
+      return
+    end
     
-    
-      def edit
-        response, status = ApiClient.new(cookies['x-api-key']  ).get('/patients/'+params[:id].to_s)
-            
-        if status == 200
-         @patients = response
-         @patients.to_json
-        
-        else
-          @patients = []
-          flash[:error] = response['errors'].join '\n'
-          # render template: 'main/login',  layout: 'form', status: status
-        end
-      end
-    
-      def update
-      end
-    
-      def destroy
-        # TODO: Send delete request to API
-      end
-    
-      private
-    
-      # SAMPLE_USERS = [
-      #   {
-      #     "id": 0,
-      #     "username": "foobar",
-      #     "active": true,
-      #     "person_id": 0,
-      #     "deleted_at": nil,
-      #     "created_at": "2018-06-26T07:43:27.000Z",
-      #     "updated_at": "2018-06-26T07:43:27.000Z",
-      #     "uuid": nil,
-      #     "role_id": 1,
-      #     "role": {
-      #       "id": 1,
-      #       "rolename": "manager",
-      #       "deleted_at": nil,
-      #       "created_at": "2018-06-26T07:43:27.000Z",
-      #       "updated_at": "2018-06-26T07:43:27.000Z",
-      #       "privileges": [],
-      #     },
-      #     "person": {
-      #       "id": 0,
-      #       "birthdate": "2000-01-01",
-      #       "gender": "male",
-      #       "deleted_at": nil,
-      #       "created_at": "2018-06-26T07:43:27.000Z",
-      #       "updated_at": "2018-06-26T07:43:27.000Z",
-      #       "person_name": {
-      #         "firstname": "foobar",
-      #         "lastname": "random",
-      #       },
-      #       "personal_attributes": [
-      #         {
-      #           "id": 0,
-      #           "value": "121321414132",
-      #           "person_id": 0,
-      #           "personal_attribute_type_id": 0,
-      #           "deleted_at": nil,
-      #           "created_at": "2018-06-26T07:43:27.000Z",
-      #           "updated_at": "2018-06-26T07:43:27.000Z",
-      #           "personal_attribute_type": {
-      #             "id": 0,
-      #             "name": "address",
-      #             "created_at": "2018-06-26T07:43:27.000Z",
-      #             "updated_at": "2018-06-26T07:43:27.000Z",
-      #             "deleted_at": nil,
-      #           },
-      #         },
-      #       ],
-      #     },
-      #   },
-      #   {
-      #     "id": 1,
-      #     "username": "barfoo",
-      #     "active": true,
-      #     "person_id": 1,
-      #     "deleted_at": nil,
-      #     "created_at": "2018-06-26T07:43:27.000Z",
-      #     "updated_at": "2018-06-26T07:43:27.000Z",
-      #     "uuid": nil,
-      #     "role_id": 0,
-      #     "role": {
-      #       "id": 0,
-      #       "rolename": "clerk",
-      #       "deleted_at": nil,
-      #       "created_at": "2018-06-26T07:43:27.000Z",
-      #       "updated_at": "2018-06-26T07:43:27.000Z",
-      #       "privileges": [],
-      #     },
-      #     "person": {
-      #       "id": 1,
-      #       "birthdate": "2000-01-01",
-      #       "gender": "male",
-      #       "deleted_at": nil,
-      #       "created_at": "2018-06-26T07:43:27.000Z",
-      #       "updated_at": "2018-06-26T07:43:27.000Z",
-      #       "person_name": {
-      #         "firstname": "random",
-      #         "lastname": "foobar",
-      #       },
-      #       "personal_attributes": [
-      #         {
-      #           "id": 1,
-      #           "value": "foobar@foobar.com",
-      #           "person_id": 1,
-      #           "personal_attribute_type_id": 1,
-      #           "deleted_at": nil,
-      #           "created_at": "2018-06-26T07:43:27.000Z",
-      #           "updated_at": "2018-06-26T07:43:27.000Z",
-      #           "personal_attribute_type": {
-      #             "id": 1,
-      #             "name": "email",
-      #             "created_at": "2018-06-26T07:43:27.000Z",
-      #             "updated_at": "2018-06-26T07:43:27.000Z",
-      #             "deleted_at": nil,
-      #           },
-      #         },
-      #       ],
-      #     },
-      #   },
-      #   {
-      #     "id": 2,
-      #     "username": "jrhacker",
-      #     "active": true,
-      #     "person_id": 3,
-      #     "deleted_at": nil,
-      #     "created_at": "2018-06-26T07:43:27.000Z",
-      #     "updated_at": "2018-06-26T07:43:27.000Z",
-      #     "uuid": nil,
-      #     "role_id": 0,
-      #     "role": {
-      #       "id": 0,
-      #       "rolename": "clerk",
-      #       "deleted_at": nil,
-      #       "created_at": "2018-06-26T07:43:27.000Z",
-      #       "updated_at": "2018-06-26T07:43:27.000Z",
-      #       "privileges": [],
-      #     },
-      #     "person": {
-      #       "id": 3,
-      #       "birthdate": "1990-01-01",
-      #       "gender": "male",
-      #       "deleted_at": nil,
-      #       "created_at": "2018-06-26T07:43:27.000Z",
-      #       "updated_at": "2018-06-26T07:43:27.000Z",
-      #       "person_name": {
-      #         "id": 3,
-      #         "firstname": "Random",
-      #         "lastname": "Geek",
-      #         "person_id": 3,
-      #         "deleted_at": nil,
-      #         "created_at": "2018-06-26T07:43:27.000Z",
-      #         "updated_at": "2018-06-26T07:43:27.000Z",
-      #       },
-      #       "personal_attributes": [],
-      #     },
-      #   },
-      # ]
+    patient = api_post '/patients', {person_id: person['id']}
+    redirect_to "/patients/#{patient['id']}" unless patient.nil?
+  end
+  
+  def show
+    @patient = api_get "patients/#{params[:id]}"
+  end
+
+  def edit
+    @patient = api_get "patients/#{params[:id]}"
+  end
+
+  def update
+    @patient = api_post "patients/#{params[:id]}", params
+    redirect_to :show, id: params[:id] unless @patient.nil?
+  end
+
+  def destroy
+    # TODO: Send delete request to API
+  end
 end
