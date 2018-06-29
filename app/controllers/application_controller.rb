@@ -37,9 +37,9 @@ class ApplicationController < ActionController::Base
         render template: 'main/login', layout: 'form'
         return nil
       elsif status >= 300
-        if response.nil?
-          logger.error('Failed to communicate with API')
-          flash[:error] = 'Something awful occurred'
+        if response.nil? or status >= 500
+          logger.error("Failed to communicate with API: #{response}")
+          flash[:error] = 'Something awful occurred, please contact system admin'
         else
           flash[:error] = response['errors'].join '\n'
         end
