@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   get "/logout" => "main#logout"
 
   resources :people
+
+  get '/patients/search' => 'patients#search'
+  get '/patients/new' => 'patients#new'
+  post '/patients/create' => 'patients#create'
   resources :patients
+
   resources :users
 end
