@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
     def api_post(resource, data)
       response, status = ApiClient.new(get_api_key).post(resource, data)
-      handle_api_response resource, data
+      handle_api_response response, status
     end
 
     def get_api_key
@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
   private
     def handle_api_response(response, status)
       if status == 403
+        flash[:error] = 'Login required'
         render template: 'main/login', layout: 'form'
         return nil
       elsif status >= 300
