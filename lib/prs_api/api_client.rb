@@ -1,6 +1,10 @@
 require "net/http"
 
 class ApiClient
+  # TODO: There are some puts statements littered in this module. Try to
+  # find a way to use rails logger from outside Rail modules like this one
+  # or at least log the messages to stderr.
+
   API_URL = 'http://localhost:8000'  # TODO: Move this to some configuration file.
   JSON_CONTENT_TYPE = 'application/json'
 
@@ -38,9 +42,17 @@ class ApiClient
     end
 
     def exec_request(request, uri)
-      response = Net::HTTP.start(uri.hostname, uri.port) do |http|
-        puts 'Connecting to API at ' + uri.to_s
-        http.request(request)
+      begin
+        response = Net::HTTP.start(uri.hostname, uri.port) do |http|
+          puts 'Connecting to API at ' + uri.to_s
+          http.request(request)
+        end
+      rescue StandardError => e
+        # Catch all because there are like a million errors Net::HTTP
+        # throws and they all don't share a common ancestor but StandardError
+        # See: https://stackoverflow.com/questions/5370697/what-s-the-best-way-to-handle-exceptions-from-nethttp
+        puts "Unable to communicate with API: #{e}"
+        return nil, 0
       end
 
       unless response['content-type'].include? JSON_CONTENT_TYPE
