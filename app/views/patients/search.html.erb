@@ -18,11 +18,9 @@
         <td><%= person['person']['person_name']['lastname'] %></td>
         <td><%= person['person']['gender'] %></td>
         <td class="actions">
-          <%= link_to("Show", patient_path(person['person_id']), :class => 'action show') %>
-          |
-          <%= link_to('Edit', edit_patient_path(person['person_id'])) %>
-          |
-          <%= link_to("Delete", '#', :class => 'action delete') %>
+          <%= link_to("Show", patient_path(person['person_id']), class: 'btn btn-info') %>
+          <%= link_to('Edit', edit_person_path(person['person_id']), class: 'btn btn-warning') %>
+          <%= link_to("Delete", '#', class: 'btn btn-danger') %>
          
         </td>
       </tr>
@@ -37,7 +35,7 @@
     <h1 class="trunk-header">Patient search</h1>
     <div class="row">
       <div class="col-sm-8">
-        <h1>Patient not found</h1>
+        <h5>Patient, <%= @search_params[:firstname] %> <%= @search_params[:lastname] %>, not found</h5>
         <p>What would you like to do?
           <%= link_to 'Create patient', patients_new_path(
                           params: {
