@@ -10,7 +10,12 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person = api_post "people/#{params[:id]}", params
+    @person = api_post "people/#{params[:id]}", {
+      "firstname": params[:firstname],
+      "lastname": params[:lastname],
+      "birthdate": params[:birthdate],
+      "gender": params[:gender]
+    }
     redirect_to "/people/#{@person['id']}" unless @person.nil?
   end
 end

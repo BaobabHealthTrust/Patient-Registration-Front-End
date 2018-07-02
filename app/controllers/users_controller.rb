@@ -11,7 +11,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    person = api_post '/people', params
+    person = api_post '/people', {
+      "firstname": params[:firstname],
+      "lastname": params[:lastname],
+      "birthdate": params[:birthdate],
+      "gender": params[:gender]
+    }
 
     if person.nil?
       flash[:error] = 'Failed to create user (could not create related person)'
