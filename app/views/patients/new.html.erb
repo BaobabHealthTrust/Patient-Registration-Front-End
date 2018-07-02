@@ -1,11 +1,18 @@
 <form action="<%= patients_create_path %>" method="POST">
-    <input type="text" name="firstname" placeholder="First name" value="<%= @firstname %>" />
-    <input type="text" name="lastname" placeholder="Last name" value="<%= @lastname %>" />
-    <select name="gender" placeholder="Gender">
+    <label for="firstname">First name</label>
+    <input type="text" name="firstname" placeholder="First name" value="<%= @firstname %>" helpText="First name" />
+
+    <label for="lastname">Last name</label>
+    <input type="text" name="lastname" placeholder="Last name" value="<%= @lastname %>" helpText="Last name" />
+
+    <label for="gender">Gender</label>
+    <select name="gender" placeholder="Gender" helpText="Gender">
         <option value="Male">Male</option>
         <option value="Female">Female</option>
     </select>
-    <input type="text" name="birthdate" placeholder="Birth date" />
+
+    <label for="birthdate">Birth date</label>
+    <input type="text" name="birthdate" placeholder="Birth date" helpText="Birth date" />
 
     <input type="submit" />
 </form>
