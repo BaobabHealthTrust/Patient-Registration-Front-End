@@ -1,5 +1,6 @@
 <% unless @patients.nil? or @patients.empty? %>
   <h1 class="trunk-header">Patients</h1>
+
   <table class="listing main-trunk" summary="Subject list">
     <thead>
       <tr class="header">
@@ -26,23 +27,26 @@
         </td>
       </tr>
       <% end %>
-
-      <ol>
-      <li><%= link_to 'Create patient', patients_new_path %></li>
-  </ol>
     </tbody>
   </table>
+  <div class="row">
+    <div class="col-sm-7"></div>
+    <%= link_to 'Create patient', patients_new_path, class: 'btn btn-warning col-sm-3', style: 'margin-top: 10px' %>
+  </div>
 <% else %>
     <h1 class="trunk-header">Patient search</h1>
-    <h1>Patient not found</h1>
-    <p>What would you like to do?</p>
-    <ol>
-        <li><%= link_to 'Create patient', patients_new_path(
-                    params: {
-                        firstname: @search_params[:firstname],
-                        lastname: @search_params[:lastname]
-                    }
-                )  %></li>
-        <li><a href="#" class="btn">Go back</a></li>
-    </ol>
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>Patient not found</h1>
+        <p>What would you like to do?
+          <%= link_to 'Create patient', patients_new_path(
+                          params: {
+                              firstname: @search_params[:firstname],
+                              lastname: @search_params[:lastname]
+                          }
+                      ), class: 'btn btn-warning'  %>
+          <%= link_to 'Go back', patients_path, class: "btn btn-primary" %>
+        </p>
+      </div>
+    </div>
 <% end %>
