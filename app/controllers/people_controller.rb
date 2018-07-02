@@ -1,4 +1,14 @@
 class PeopleController < ApplicationController
+  def index
+    # HACK: A fix for an error that occurs when a user chooses to
+    # cancel a person edit operation. Clicking on cancel in a touchtoolkit
+    # form goes one level back in the current url as opposed to
+    # going back one level in browser history. This was resulting in a number
+    # of hits to this action (was unimplemented and isn't supposed to be
+    # implemented).
+    redirect_to root_path
+  end
+
   def show
     @person = api_get "people/#{params[:id]}"
     render layout: 'application' unless @person.nil?
