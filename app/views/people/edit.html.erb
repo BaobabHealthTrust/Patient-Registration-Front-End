@@ -1,0 +1,15 @@
+<form action="<%= people_update_path %>" method="POST">
+    <label for="firstname">First name</label>
+    <input type="text" name="firstname" placeholder="First name" value="<%= @person['person_name']['firstname'] %>" />
+
+    <label for="lastname">Last name</label>
+    <input type="text" name="lastname" placeholder="Last name" value="<%= @person['person_name']['lastname'] %>" />
+
+    <label for="gender">Gender</label>
+    <input type="text" name="gender" placeholder="Gender" value="<%= @person['gender'] %>" /> 
+
+    <label for="birthdate">Birth date</label>
+    <input type="text" name="birthdate" placeholder="Birth date" value="<%= @person['birthdate'] %>" />
+
+    <input type="submit" />
+</form>

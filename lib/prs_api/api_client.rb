@@ -42,17 +42,9 @@ class ApiClient
     end
 
     def exec_request(request, uri)
-      begin
-        response = Net::HTTP.start(uri.hostname, uri.port) do |http|
-          puts 'Connecting to API at ' + uri.to_s
-          http.request(request)
-        end
-      rescue StandardError => e
-        # Catch all because there are like a million errors Net::HTTP
-        # throws and they all don't share a common ancestor but StandardError
-        # See: https://stackoverflow.com/questions/5370697/what-s-the-best-way-to-handle-exceptions-from-nethttp
-        puts "Unable to communicate with API: #{e}"
-        return nil, 0
+      response = Net::HTTP.start(uri.hostname, uri.port) do |http|
+        puts 'Connecting to API at ' + uri.to_s
+        http.request(request)
       end
 
       unless response['content-type'].include? JSON_CONTENT_TYPE

@@ -1,0 +1,26 @@
+<h1><%= @person['person_name']['firstname'] %> <%= @person['person_name']['lastname'] %></h1>
+
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-responsive">
+      <tbody>
+        <tr>
+          <td>id:</id>
+          <td><%= @person['id'] %></td>
+        </tr>
+        <tr>
+          <td>First name</td>
+          <td><%= @person['person_name']['firstname'] %></td>
+        </tr>
+        <tr>
+          <td>Last name</td>
+          <td><%= @person['person_name']['lastname'] %></td>
+        <tr>
+        <tr>
+          <td>Date of birth</td>
+          <td><%= @person['birthdate'] %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
