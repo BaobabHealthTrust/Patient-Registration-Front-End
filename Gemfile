@@ -31,8 +31,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'webpacker', '~> 3.5'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
-gem 'jquery-ujs'
-
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
