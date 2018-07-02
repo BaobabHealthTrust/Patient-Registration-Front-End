@@ -1,36 +1,30 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$shadow_color: rgba(0, 0, 255, 0.3);
+$our-blue: rgb(52, 93, 181);
+$h-padding: 15px;
+$h-margin: 15px;
+$v-margin: 10px;
+
+body {
+    margin-top: $v-margin;
+    margin-left: $h-margin;
+    margin-right: $h-margin;
+}
 
 #header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 10px;
-    width: 100%;
-
     #information, #logo {
-        display: inline-block;
-        position: absolute;
-        border: 1px solid gray;
-        top: 0;
-        min-height: 128px;
-        padding: 0;
-        box-shadow: 5px 10px $shadow_color;
+        border: 1px solid #004586;
+        height: 120px;
+        box-shadow: 5px 2px 5px 0 ;
     }
 
-    $header_banner_indent: 5%;
-    $header_banner_hmargin: 30px;
-
     #information {
-        left: $header_banner_indent;
-        width: 55%;
+        padding: 5px 5px 5px 15px;
     }
 
     #logo {
-        right: $header_banner_indent;
-        width: 30%;
+        padding: 0;
     }
 }
 
@@ -47,34 +41,26 @@ $shadow_color: rgba(0, 0, 255, 0.3);
 
 
 #trunk {
-    position: absolute;
-    margin-left: 2.5%;
-    left: 0;
-    top: 160px;
-    width: 95%;
-    height: 65%;
-    min-height: 420px;
-    box-shadow: 5px 10px $shadow_color;
+    margin-top: $v-margin;
+    min-height: 480px;
+    border-spacing: 2px;
+    border-color: grey;
+    font: 14px "Lucida Grande",Helvetica,Arial,sans-serif;
+    padding-left: $h-padding;
+    padding-right: $h-padding;
 
     #programs, #main, #nav {
-        position: absolute;
-        display: inline-block;
-        height: 100%;
-        border-left: 1px solid blue;
-        border-bottom: 1px solid blue;
+        border: 1px solid $our-blue;
+        padding: 0;
 
         .trunk-header {
             top: 0;
-            margin: auto;
-            padding: 0;
             color: white;
-            background-color:  blue;
+            background-color: $our-blue;
             text-align: center;
-            font-size: 16pt;
-            border-bottom: 1px solid black;
-            margin-bottom: 20px;
-            padding: 3pt;
+            font-size: 12pt;
             min-height: 20px;
+            padding: 5px;
         }
 
         ul {
@@ -83,12 +69,19 @@ $shadow_color: rgba(0, 0, 255, 0.3);
 
         li {
             list-style: none;
-            border-bottom: 1px solid gray;
-            margin: auto;
-            width: 80%;
+            border-bottom: 1px solid $our-blue;
+            margin: $h-padding;
             padding: 5px;
-            font-size: 16pt;
-            color: black;
+            color: $our-blue;
+        }
+
+        li.current {
+            background-color: $our-blue;
+            color: white;
+        }
+        
+        li a, li:visited {
+            color: inherit;
         }
 
         table {
@@ -116,35 +109,13 @@ $shadow_color: rgba(0, 0, 255, 0.3);
         }
     }
 
-    #programs {
-        left: 0;
-        width: 20%;
-        
-        // li {
-        //     list-style: none;
-
-        //     a {
-        //        left: 0;
-        //             background-image: linear-gradient(#5b6680, #5984e0);
-        //             height: 30px;
-        //     }
-        // }
-    }
-
     #main {
-        left: 20%;
-        width: 60%;
         overflow-y: scroll;
 
-        .main-trunk {
-            margin: 20px;
-        }
-
         .app-link {
-            display: inline-flex;
-            min-width: 35%;
             padding: 10px;
-            margin: 5%;
+            margin-top: $h-padding;
+            margin-bottom: $h-padding;
             font-weight: bold;
             text-decoration: none;
             text-align: center;
@@ -166,23 +137,21 @@ $shadow_color: rgba(0, 0, 255, 0.3);
     }
 
     #nav {
-        left: 80%;
-        width: 20%;
         border-right: 1px solid blue;
     }
 }
 
+$our-black: rgb(51, 51, 51);
+
 #footer {
-    position: absolute;
-    display: block;
+    position: fixed;
     width: 100%;
-    background-image: linear-gradient(gray, black);
+    background-color: $our-black;
     min-height: 50px;
     bottom: 0;
     left: 0;
 
     .button {
-        position: absolute;
         top: 5px;
         max-height: 45px;
         color: white;
@@ -196,14 +165,18 @@ $shadow_color: rgba(0, 0, 255, 0.3);
     $button_hmargin: 10px;
 
     #button-logout {
+        position: absolute;
         left: 0;
         background-image: linear-gradient(maroon, red);
         margin-left: $button_hmargin;
+        border: 1px solid red;
     }
 
     #button-search-patient {
+        position: absolute;
         right: 0;
         background-image: linear-gradient(green, lightgreen);
         margin-right: $button_hmargin;
+        border: 1px solid lightgreen;
     }
 }
