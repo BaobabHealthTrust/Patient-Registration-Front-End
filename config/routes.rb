@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/login" => "main#check_login"
   post "/login" => "main#login"
   get "/logout" => "main#logout"
+  get "/reports" => "main#reports"
 
   get '/people/edit' => 'people#edit'
   post 'people/update' => 'people#update'

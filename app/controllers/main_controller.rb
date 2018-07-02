@@ -22,6 +22,15 @@ class MainController < ApplicationController
     end
   end
 
+
+  def reports
+    user = api_get('login')
+    if user
+      set_user user
+        @reports = api_get 'count'
+      render template: 'main/reports', layout: 'application'
+    end
+  end
   def logout
     api_post('logout', {})
     set_api_key nil
