@@ -40,9 +40,8 @@ class UsersController < ApplicationController
     redirect_to :show, id: params[:id] unless @user.nil?
   end
 
-
-
   def destroy
-    # TODO: Send delete request to API
+    response = api_delete "users/#{params[:id]}", params
+    redirect_to users_path if response
   end
 end

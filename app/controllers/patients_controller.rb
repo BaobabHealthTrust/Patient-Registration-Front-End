@@ -56,6 +56,7 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    # TODO: Send delete request to API
+    response = api_delete "patients/#{params[:id]}"
+    redirect_to patients_path if response
   end
 end
