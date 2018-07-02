@@ -65,5 +65,14 @@
         <%= link_to('Find or Register Patient', patients_search_path, id: 'button-search-patient', class: 'button') %>
       </div>
     </footer>
+    <script language="javascript">
+      /**
+       * HACK: Force a page reload when back button is hit. For some reason the touchtoolkit
+       * loaded on pages containing forms stays loaded when the browser navigates backwards.
+       * The cached touchtoolkit ends up clobbering and malforming the previous page(s).
+       * See the 'form.html.erb' layout file.
+       */
+      $(() => $(window).on('popstate', () => location.reload(true)));
+    </script>
   </body>
 </html>
