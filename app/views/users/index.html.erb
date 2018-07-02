@@ -1,18 +1,14 @@
   <h5 class="trunk-header">Users</h5>
   <table class="table table-responsive">
     <thead>
-      <th>id</id>
-      <th>uuid</th>
       <th>Username</th>
       <th>Role</th>
-      <th>Action</th>
+      <th>Actions</th>
     </thead>
 
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user['id'] %></td>
-          <td><%= user['uuid'] %></td>
           <td><%= user['username'] %></td>
           <td><a href="#"><%= user['role']['rolename'] %></a></td>
           <td>
