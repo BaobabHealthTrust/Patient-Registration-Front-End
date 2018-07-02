@@ -23,7 +23,7 @@ class MainController < ApplicationController
   end
 
   def logout
-    api_get('logout')
+    api_post('logout', {})
     set_api_key nil
     set_user nil
     redirect_to :login
