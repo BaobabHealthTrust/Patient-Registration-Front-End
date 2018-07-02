@@ -29,6 +29,13 @@ class ApiClient
     exec_request request, uri
   end
 
+  def delete(resource)
+    uri = build_uri resource
+    request = Net::HTTP::Delete.new(uri)
+    prepare_request request
+    exec_request request, uri
+  end
+
   private
     # Returns a URI object with API host attached
     def build_uri(resource)
@@ -45,6 +52,12 @@ class ApiClient
       response = Net::HTTP.start(uri.hostname, uri.port) do |http|
         puts 'Connecting to API at ' + uri.to_s
         http.request(request)
+      end
+
+      # 204 is no content response but flags success.
+      # Usually returned on delete requests.
+      if response.code.to_i == 204
+        return nil, 204
       end
 
       unless response['content-type'].include? JSON_CONTENT_TYPE
