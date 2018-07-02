@@ -18,7 +18,7 @@
         <td><%= patient['person']['gender'] %></td>
         <td class="actions">
           <%= link_to("Show", patient_path(patient['id']), :class => 'btn btn-info') %>
-          <%= link_to('Edit', edit_person_path(patient['id']), :class => 'btn btn-warning') %>
+          <%= link_to('Edit', edit_person_path(person['id']), :class => 'btn btn-warning') %>
           <%= link_to("Delete", '#', :class => 'btn btn-danger') %>
         </td>
       </tr>
