@@ -18,7 +18,7 @@
         <td><%= patient['person']['gender'] %></td>
         <td class="actions">
           <%= link_to("Show", patient_path(patient['id']), :class => 'btn btn-info') %>
-          <%= link_to('Edit', edit_person_path(patient['id']), :class => 'btn btn-warning') %>
+          <%= link_to('Edit', edit_person_path(patient['person_id']), :class => 'btn btn-warning') %>
           <%= link_to("Delete", patient_path(patient['id']), method: :delete,
                                 data: {confirm: 'Sure about this?'}, class: 'btn btn-danger') %>
         </td>
