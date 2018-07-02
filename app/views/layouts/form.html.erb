@@ -7,7 +7,6 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script type="text/javascript" language="javascript" src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js" defer ></script>
   </head>
 
   <body>
@@ -20,5 +19,6 @@
       <% end %>
       <%= yield %>
     </div>
+    <script src="/touchscreentoolkit/lib/javascripts/touchScreenToolkit.js"></script>
   </body>
 </html>

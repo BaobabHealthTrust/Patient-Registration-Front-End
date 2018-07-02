@@ -1,12 +1,8 @@
-require 'prs_api/api_client'
-
 class MainController < ApplicationController
   layout :resolve_layout
+  skip_before_action :load_user
 
   def login
-    # render template: 'main/index', layout: 'application'
-    # puts "username: #{params[:username]}"
-
     response = api_post('login', {
       username: params[:username], password: params[:password]
     })
@@ -20,9 +16,9 @@ class MainController < ApplicationController
 
   def check_login
     user = api_get('login')
-    unless user.nil?
+    if user
       set_user user
-      render template: 'main/index', layout: 'application' unless response.nil?
+      render template: 'main/index', layout: 'application'
     end
   end
 

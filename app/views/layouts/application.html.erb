@@ -6,44 +6,48 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body id="content">
-    <div id="header">
-      <div id="information">
-       <table>
-          <tbody>
-            <tr>
-              <td>User:</td>
-              <td><%= @logged_in_user['username'] %></td>
-            </tr>
-            <tr>
-              <td>Date:</td>
-              <td><%= Time.now.to_date %></td>
-            </tr>
-          </tbody>
-        </table>
+    <div id="header" class="row">
+      <div class="col-sm-8">
+        <div id="information">
+          <table>
+              <tbody>
+                <tr>
+                  <td>User:</td>
+                  <td><%= @logged_in_user['username'] %></td>
+                </tr>
+                <tr>
+                  <td>Date:</td>
+                  <td><%= Time.now.to_date %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
       </div>
-      <div id="logo">
-        <p>Logo</p>
+      <div class="col-sm-4">
+        <div id="logo">
+          <p>Logo</p>
+        </div>
       </div>
     </div>
 
-    <div id="trunk">
-      <div id="programs">
-        <h5 class="trunk-header">Quick Links</h5>
+    <div id="trunk" class="row">
+      <div id="programs" class="col-sm-2">
+        <h5 class="trunk-header">Programs</h5>
         <ul>
-          <li><a href="#">This App</a></li>
+          <li class="current"><%= link_to 'Patients Registry', root_path %></li>
           <li><a href="#">Some Other App</a></li>
         </ul>
       </div>
 
-      <div id="main">
+      <div id="main" class="col-sm-8">
         <%= yield %>
       </div>
 
-      <div id="nav">
+      <div id="nav" class="col-sm-2">
         <h5 class="trunk-header">Menu</h5>
         <ul>
           <li><%= link_to('Home', root_path) %></li>
@@ -54,9 +58,11 @@
       </div>
     </div>
 
-    <div id="footer">
-      <%= link_to('Logout', logout_path, id: 'button-logout', class: 'button') %>
-      <%= link_to('Find or Register Patient', patients_search_path, id: 'button-search-patient', class: 'button') %>
-    </div>
+    <footer id="footer">
+      <div class="col-sm-12">
+        <%= link_to('Logout', logout_path, id: 'button-logout', class: 'button') %>
+        <%= link_to('Find or Register Patient', patients_search_path, id: 'button-search-patient', class: 'button') %>
+      </div>
+    </footer>
   </body>
 </html>

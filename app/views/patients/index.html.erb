@@ -1,5 +1,5 @@
   <h1 class="trunk-header">Patients</h1>
-  <table class="listing main-trunk" summary="Subject list">
+  <table class="main-content table table-responsive">
     <thead>
       <tr class="header">
         <th>First Name</th>
@@ -11,15 +11,15 @@
 
     <tbody>
       <% @patients.class 
-      @patients.each do |x| %>
+      @patients.each do |patient| %>
       <tr>
-        <td><%= x['person']['person_name']['firstname'] %></td>
-        <td><%= x['person']['person_name']['lastname'] %></td>
-        <td><%= x['person']['gender'] %></td>
+        <td><%= patient['person']['person_name']['firstname'] %></td>
+        <td><%= patient['person']['person_name']['lastname'] %></td>
+        <td><%= patient['person']['gender'] %></td>
         <td class="actions">
-          <%= link_to("Show", patient_path(x['person_id']), :class => 'action show') %>
+          <%= link_to("Show", patient_path(patient['id']), :class => 'action show') %>
           |
-          <%= link_to('Edit', edit_patient_path(x['person_id'])) %>
+          <%= link_to('Edit', edit_person_path(patient['id'])) %>
           |
           <%= link_to("Delete", '#', :class => 'action delete') %>
         </td>

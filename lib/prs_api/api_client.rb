@@ -1,6 +1,10 @@
 require "net/http"
 
 class ApiClient
+  # TODO: There are some puts statements littered in this module. Try to
+  # find a way to use rails logger from outside Rail modules like this one
+  # or at least log the messages to stderr.
+
   API_URL = 'http://localhost:8000'  # TODO: Move this to some configuration file.
   JSON_CONTENT_TYPE = 'application/json'
 

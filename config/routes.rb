@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post "/login" => "main#login"
   get "/logout" => "main#logout"
 
+  get '/people/edit' => 'people#edit'
+  post 'people/update' => 'people#update'
   resources :people
 
   get '/patients/search' => 'patients#search'
