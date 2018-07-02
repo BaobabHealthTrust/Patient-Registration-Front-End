@@ -22,9 +22,14 @@
           <%= link_to('Edit', edit_patient_path(person['person_id'])) %>
           |
           <%= link_to("Delete", '#', :class => 'action delete') %>
+         
         </td>
       </tr>
       <% end %>
+
+      <ol>
+      <li><%= link_to 'Create patient', patients_new_path %></li>
+  </ol>
     </tbody>
   </table>
 <% else %>
