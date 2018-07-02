@@ -44,3 +44,10 @@
     </table>
   </div>
 </div>
+
+<div class="row">
+  <%= link_to('Edit', edit_person_path(@patient['person_id']), class: 'btn btn-warning col-sm-3') %>
+  <div class="col-sm-1"></div>
+  <%= link_to("Delete", patient_path(@patient['id']), method: :delete,
+                        data: { confirm: 'Sure about this?'}, class: 'btn btn-danger col-sm-3') %>
+</div>
