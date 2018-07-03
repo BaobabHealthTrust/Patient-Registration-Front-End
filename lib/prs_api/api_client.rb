@@ -20,9 +20,17 @@ class ApiClient
   end
 
   def post(resource, data)
-    puts data
     uri = build_uri resource
     request = Net::HTTP::Post.new(uri)
+    prepare_request request
+    request['Content-type'] = JSON_CONTENT_TYPE
+    request.body = JSON.dump(data)
+    exec_request request, uri
+  end
+
+  def put(resource, data)
+    uri = build_uri resource
+    request = Net::HTTP::Put.new(uri)
     prepare_request request
     request['Content-type'] = JSON_CONTENT_TYPE
     request.body = JSON.dump(data)

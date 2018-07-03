@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
       handle_api_response response, status
     end
 
+    def api_put(resource, data)
+      response, status = ApiClient.new(get_api_key).put(resource, data)
+      handle_api_response response, status
+    end
+
     def api_delete(resource)
       response, status = ApiClient.new(get_api_key).delete(resource)
       handle_api_response response, status
