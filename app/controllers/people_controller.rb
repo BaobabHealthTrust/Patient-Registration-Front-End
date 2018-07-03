@@ -20,7 +20,7 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person = api_post "people/#{params[:id]}", {
+    @person = api_put "people/#{params[:id]}", {
       "firstname": params[:firstname],
       "lastname": params[:lastname],
       "birthdate": params[:birthdate],

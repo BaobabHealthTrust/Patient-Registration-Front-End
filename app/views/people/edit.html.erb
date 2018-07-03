@@ -1,4 +1,4 @@
-<form action="<%= people_update_path %>" method="POST">
+<%= form_tag(person_path(id: @person['id']), method: :put) do %>
     <label for="firstname">First name</label>
     <input type="text" name="firstname" placeholder="First name" value="<%= @person['person_name']['firstname'] %>"
            helpText="First name" />
@@ -16,4 +16,4 @@
            helpText="Birthdate" />
 
     <input type="submit" />
-</form>
+<% end %>
