@@ -1,5 +1,5 @@
 <h5 class="trunk-header">Users</h5>
-<table class="table table-responsive">
+<table class="display" id="usertable">
   <thead>
     <th>Username</th>
     <th>Role</th>
@@ -25,3 +25,10 @@
   <div class="col-sm-7"></div>
   <%= link_to 'Create User', users_new_path, class: 'btn btn-warning col-sm-3', style: 'margin-top: 10px' %>
 </div>
+
+<script type="text/javascript" charset="utf8">
+$(document).ready( function () {
+    $('#usertable').DataTable();
+} );
+
+</script>

@@ -4,10 +4,12 @@
     <title>PatientRegistrationFrontEnd</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>  <!-- for ES6 modules -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
   </head>
 
   <body>
@@ -17,12 +19,12 @@
           <table>
               <tbody>
                 <tr>
-                  <td>User:</td>
-                  <td><%= @logged_in_user['username'] %></td>
+                  <td><h1>User: </h1></td>
+                  <td><h1><%= @logged_in_user['username'] %></h1></td>
                 </tr>
                 <tr>
-                  <td>Date:</td>
-                  <td><%= Time.now.to_date %></td>
+                  <td><h2>Date:</h2></td>
+                  <td><h2><%= Time.now.to_date %></h2></td>
                 </tr>
               </tbody>
             </table>
@@ -30,7 +32,7 @@
       </div>
       <div class="col-sm-4">
         <div id="logo">
-          <p>Logo</p>
+          <h1>PRS 1.0</h1>
         </div>
       </div>
     </div>

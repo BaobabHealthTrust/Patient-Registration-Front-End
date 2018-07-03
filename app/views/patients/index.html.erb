@@ -1,5 +1,6 @@
   <h1 class="trunk-header">Patients</h1>
-  <table class="main-content table table-responsive">
+
+  <table class="display" id="patients_table">
     <thead>
       <tr class="header">
         <th>First Name</th>
@@ -26,3 +27,15 @@
       <% end %>
     </tbody>
   </table>
+
+
+  <div class="row">
+  <div class="col-sm-7"></div>
+  <%= link_to 'Create Patient', patients_new_path, class: 'btn btn-warning col-sm-3', style: 'margin-top: 10px' %>
+</div>
+  <script type="text/javascript" charset="utf8">
+  $(document).ready( function () {
+      $('#patients_table').DataTable();
+  } );
+  
+  </script>
