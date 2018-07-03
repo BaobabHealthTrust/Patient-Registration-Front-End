@@ -22,6 +22,8 @@ erd.pdf
 #Gemfile.lock
 config/database.yml
 public/touchscreentoolkit/.*
+# Ignore link if used
+public/touchscreentoolkit
 
 
 # Ignore master key for decrypting credentials and more.
