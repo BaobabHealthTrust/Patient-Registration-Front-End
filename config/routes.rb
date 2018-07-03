@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   post '/patients/create' => 'patients#create'
   resources :patients
 
+  get '/users/new' => 'users#new'
+  post '/users/create' => 'users#create'
   resources :users
 end

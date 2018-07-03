@@ -4,18 +4,15 @@ class UsersController < ApplicationController
   end
 
   def new
-    @firstname = params[:firstname] or ''
-    @lastname = params[:lastname] or ''
-
-    render 'layout': 'form'
+    render layout: 'form'
   end
 
   def create
     person = api_post '/people', {
-      "firstname": params[:firstname],
-      "lastname": params[:lastname],
-      "birthdate": params[:birthdate],
-      "gender": params[:gender]
+      firstname: params[:firstname],
+      lastname: params[:lastname],
+      birthdate: params[:birthdate],
+      gender: params[:gender]
     }
 
     if person.nil?
@@ -23,8 +20,13 @@ class UsersController < ApplicationController
       return
     end
     
-    user = api_post '/users', {person_id: person['id']}
-    redirect_to users_path(id: params[:id]) unless user.nil?
+    user = api_post '/users', {
+      person_id: person['id'],
+      username: params[:username],
+      password: params[:password],
+      role: params[:role]
+    }
+    redirect_to "/users/#{user['id']}/" unless user.nil?
   end
   
   def show
